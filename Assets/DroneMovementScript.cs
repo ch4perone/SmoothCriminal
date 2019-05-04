@@ -8,10 +8,10 @@ public class DroneMovementScript : MonoBehaviour
 	float levitationForce;
 	private float speedAcceleration = 150.0f;
 	private float speedMaximum = 2.0f;
-	private float turningSpeed = 2.0f;
+	private float turningSpeed = 2.5f;
 	private float desiredRotation;
 	private float currentRotation;
-	private float rotateAmountByKeys = 1.5f;
+	//private float rotateAmountByKeys = 1.5f;
 	private float rotationYVelocity;
 	private Vector3 refVelocityDamping;
 	private Vector3 refRotationDamping;
@@ -31,11 +31,18 @@ public class DroneMovementScript : MonoBehaviour
 		moveForward();
 		rotate();
 		thisDrone.AddRelativeForce(Vector3.up * levitationForce);
+		reset();
 		/*thisDrone.rotation = Quaternion.Euler(
 				new Vector3(thisDrone.rotation.x, currentRotation, thisDrone.rotation.z)
 			);*/
 
 		boundSpeed();
+
+		if (Input.GetKey(KeyCode.Escape))
+    	{
+			Debug.Log("quit");
+        	Application.Quit();
+    	}
     }
 
 	void levitate() {
@@ -78,6 +85,14 @@ public class DroneMovementScript : MonoBehaviour
 			/*thisDrone.rotation = Quaternion.Euler(
 				new Vector3(thisDrone.rotation.x, Vector3.SmoothDamp(thisDrone.rotation.y, Vector3.zero, ref  refRotationDamping, 0.95f), thisDrone.rotation.z)
 			);*/
+		}
+	}
+
+	void reset() {
+		if(Input.GetKey(KeyCode.R)) { //TODO doesn't really do what you tell it to do :(
+			thisDrone.rotation = Quaternion.Euler(
+				new Vector3(thisDrone.rotation.x, thisDrone.rotation.y, thisDrone.rotation.z)
+			);
 		}
 	}
 }
