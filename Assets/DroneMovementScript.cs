@@ -22,6 +22,7 @@ public class DroneMovementScript : MonoBehaviour
     void Start()
     {
         thisDrone = GetComponent<Rigidbody>();
+		Cursor.lockState = CursorLockMode.Locked;
 		//Screen.lockCurser = true;
     }
 
@@ -38,13 +39,23 @@ public class DroneMovementScript : MonoBehaviour
 			);*/
 
 		boundSpeed();
-
-		if (Input.GetKey(KeyCode.Escape))
-    	{
-			Debug.Log("quit");
-        	Application.Quit();
-    	}
+		ifquit();	
+		
     }
+	void ifquit() {
+		if(Input.GetKey(KeyCode.Escape)) {
+
+
+		#if UNITY_EDITOR
+         // Application.Quit() does not work in the editor so
+         // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+         UnityEditor.EditorApplication.isPlaying = false;
+     	#else
+         Application.Quit();
+     	#endif
+
+		}
+	}
 
 	void levitate() {
 		if(Input.GetKey(KeyCode.Space)) {
