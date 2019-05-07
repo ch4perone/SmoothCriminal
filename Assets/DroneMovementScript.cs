@@ -22,6 +22,7 @@ public class DroneMovementScript : MonoBehaviour
     void Start()
     {
         thisDrone = GetComponent<Rigidbody>();
+		//Screen.lockCurser = true;
     }
 
     // Update is called once per frame
