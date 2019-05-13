@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class CameraTrigger : MonoBehaviour
 {
-    void OnTriggerEnter(Collider collider) {
-		Debug.Log("Enter");
+
+	Light light;
+	Color colorDefault;
+	bool isScanning;
+	float scanningTime;
+	float timeToDetect = 1.0f;
+	void Start() {
+		light = GetComponent<Light>();
+		colorDefault = light.color;
+
+	}
+	void FixedUpdate() {
+		if(isScanning) {		
+			scanningTime += Time.deltaTime;
+			light.color = Color.Lerp(colorDefault, Color.red, scanningTime / timeToDetect);
+			if (scanningTime > timeToDetect) {
+				Debug.Log("Detected");
+			}
+		}
 	}
 
-	void OnTriggerStay(Collider collider) {
-		Debug.Log("Stay");
+    void OnTriggerEnter(Collider collider) {
+		isScanning = true;
+		scanningTime = 0;
+	}
+
+	void OnTriggerStay(Collider collider)
+	{
+		//scanningTime += Time.deltaTime;
+		//Debug.Log(scanningTime);
+
+		//Debug.Log("Stay");
+		//TODO interpolate colorDefault -> RED
 	}
 
 	void OnTriggerExit(Collider collider) {
-		Debug.Log("Exit");
+		isScanning = false;	
+		light.color = colorDefault;
+		scanningTime = 0;
 	}
 }
