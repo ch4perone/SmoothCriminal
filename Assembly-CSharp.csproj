@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\BulletScript.cs" />
      <Compile Include="Assets\CameraMovementScript.cs" />
+     <Compile Include="Assets\CameraTrigger.cs" />
      <Compile Include="Assets\DroneGunScript.cs" />
      <Compile Include="Assets\DroneMovementScript.cs" />
      <Compile Include="Assets\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
      <Compile Include="Assets\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
      <Compile Include="Assets\LaserScript.cs" />
+     <Compile Include="Assets\RDL\Security_Pack\Scripts\scr_camera.cs" />
      <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/home/chaperone/data/ist/3Dprogramming/unity/SmoothCriminal/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
